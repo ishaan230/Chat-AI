@@ -1,11 +1,17 @@
 import openai
+import os
 from config import apikey
 openai.api_key = apikey
     
+def check_index(user_prompt):
+    for i in range(0,len(user_prompt)):
+        if(user_prompt[i]==" "):
+            return i
+    return i    
 
 def callgpt(user_prompt):
     
-    #Call the api
+    # # Call the api
     response = openai.Completion.create(
     model="text-davinci-003",
     prompt=user_prompt,
@@ -17,7 +23,16 @@ def callgpt(user_prompt):
     )
     
     #Response from api
-    print(response["choices"][0]["text"])
+    resp = (response["choices"][0]["text"])
+    print('Generating...\n')
+    
+    print(resp)
+    
+    ind = check_index(user_prompt)
+
+    with open(f"./Stored_Results/{user_prompt[0:ind]}.txt", 'w') as file:
+        file.write(resp)
+
 
 def main():
     user_input = input("Enter prompt: ")
