@@ -9,7 +9,7 @@ The GPT Chat AI is a chatbot application based on OpenAI's API. It utilizes the 
 
 ```cd Chat-AI```
 
-## Install requirements using pip
+## Install requirements
 
 ```pip install -r requirements.txt```
 
